@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Basic Health Risk Checker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #2c7be5;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        section {
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+        }
+        h2 {
+            color: #2c7be5;
+        }
+        ul {
+            line-height: 1.8;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #777;
+        }
+      input {
+    padding: 10px;
+    margin: 10px 5px;
+    width: 100%;
+    max-width: 150px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #2c7be5;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #1a5bb8;
+}
+
+#result {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Basic Health Risk Checker</h1>
+    <p>A simple command-line tool for quick health screening</p>
+</header>
+
+<section>
+    <h2>What is this tool?</h2>
+  <section id="calculator">
+    <h2>Calculate Your Risk</h2>
+    <input type="number" id="weight" placeholder="Weight (kg)">
+    <input type="number" id="height" placeholder="Height (cm)">
+    <button onclick="calculateBMI()">Check Now</button>
+    <div id="result" style="margin-top: 20px; font-weight: bold;"></div>
+</section>
+    <p>
+        The Basic Health Risk Checker is a lightweight command-line application
+        that helps users quickly assess basic health risk indicators using
+        simple and transparent rules.
+    </p>
+</section>
+
+<section>
+    <h2>How does it work?</h2>
+    <ul>
+        <li>The user enters age, weight, and height</li>
+        <li>The tool calculates the Body Mass Index (BMI)</li>
+        <li>The BMI is classified into standard categories</li>
+        <li>A basic health risk level is displayed</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Key Features</h2>
+    <ul>
+        <li>Fast and easy to use</li>
+        <li>Offline and privacy-friendly</li>
+        <li>No personal data storage</li>
+        <li>Clear and rule-based results</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Who is it for?</h2>
+    <ul>
+        <li>Students and educators</li>
+        <li>Healthcare trainees</li>
+        <li>Anyone needing a quick health check</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Why use this tool?</h2>
+    <p>
+        This tool provides a simple way to automate basic health calculations
+        without relying on complex systems or online platforms. It is designed
+        for educational and preliminary screening purposes.
+    </p>
+</section>
+
+<footer>
+    <p>© 2026 Basic Health Risk Checker</p>
+</footer>
+<script>
+function calculateBMI() {
+    let weight = document.getElementById('weight').value;
+    let height = document.getElementById('height').value / 100; // تحويل السنتيمتر لمتر
+    
+    if (weight > 0 && height > 0) {
+        let bmi = (weight / (height * height)).toFixed(1);
+        let category = "";
+        
+        if (bmi < 18.5) category = "Underweight";
+        else if (bmi < 25) category = "Normal weight";
+        else if (bmi < 30) category = "Overweight";
+        else category = "Obesity";
+        
+        document.getElementById('result').innerHTML = `Your BMI is: ${bmi} (${category})`;
+    } else {
+        document.getElementById('result').innerHTML = "Please enter valid numbers!";
+    }
+}
+</script>
+</body>
+</html>
