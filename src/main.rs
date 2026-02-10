@@ -1,33 +1,56 @@
-use std::io;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Basic Health Risk Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            padding: 40px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+        }
+        h1 {
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
 
-fn main() {
-    let mut weight = String::new();
-    let mut height = String::new();
+<div class="container">
+    <h1>Basic Health Risk Checker</h1>
 
-    println!("Enter your weight in kg:");
-    io::stdin().read_line(&mut weight).unwrap();
+    <p>
+        This project is a simple health informatics tool written in Rust.
+        It calculates Body Mass Index (BMI) based on user input.
+    </p>
 
-    println!("Enter your height in meters:");
-    io::stdin().read_line(&mut height).unwrap();
+    <h3>How it works</h3>
+    <ul>
+        <li>User enters weight in kilograms</li>
+        <li>User enters height in meters</li>
+        <li>The program calculates BMI</li>
+        <li>A health risk category is displayed</li>
+    </ul>
 
-    let weight: f64 = weight.trim().parse().unwrap();
-    let height: f64 = height.trim().parse().unwrap();
+    <h3>Technology Used</h3>
+    <ul>
+        <li>Rust programming language</li>
+        <li>Command-line application</li>
+        <li>Health Informatics domain</li>
+    </ul>
 
-    if height <= 0.0 {
-        println!("Height must be greater than zero.");
-        return;
-    }
+    <p><strong>Run command:</strong> <code>cargo run</code></p>
 
-    let bmi = weight / (height * height);
-    println!("Your BMI is: {:.2}", bmi);
+    <hr>
+    <p><em>Student project – Health Informatics</em></p>
+</div>
 
-    if bmi < 18.5 {
-        println!("Status: Underweight");
-    } else if bmi < 25.0 {
-        println!("Status: Normal weight");
-    } else if bmi < 30.0 {
-        println!("Status: Overweight");
-    } else {
-        println!("Status: Obesity");
-    }
-}
+</body>
+</html>
