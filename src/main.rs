@@ -1,56 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Basic Health Risk Checker</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f6f8;
-            padding: 40px;
+use std::io;
+
+fn main() {
+    println!("--- BMI Calculator ---");
+
+    // Get weight from user
+    let weight = get_input("Enter your weight in kg (e.g., 75.5):");
+    
+    // Get height from user
+    let height = get_input("Enter your height in meters (e.g., 1.75):");
+
+    // Validation to prevent division by zero
+    if height <= 0.0 {
+        println!("⚠️ Error: Height must be a positive value greater than zero.");
+        return;
+    }
+
+    // Calculate BMI
+    let bmi = weight / (height * height);
+
+    println!("\n------------------------------");
+    println!("Your BMI is: {:.2}", bmi);
+
+    // Determine the health category
+    let category = if bmi < 18.5 {
+        "Underweight"
+    } else if bmi < 25.0 {
+        "Healthy Weight"
+    } else if bmi < 30.0 {
+        "Overweight"
+    } else {
+        "Obesity"
+    };
+
+    println!("Health Category: {}", category);
+    println!("------------------------------");
+}
+
+/// Helper function to read user input and parse it to f64
+/// It handles errors gracefully by asking the user to re-enter the value
+fn get_input(prompt: &str) -> f64 {
+    loop {
+        println!("{}", prompt);
+        let mut input = String::new();
+        
+        io::stdin()
+            .read_line(&mut input)
+            .expect("Failed to read input");
+
+        match input.trim().parse::<f64>() {
+            Ok(num) if num > 0.0 => return num,
+            Ok(_) => println!("⚠️ Please enter a number greater than zero."),
+            Err(_) => println!("⚠️ Error: Please enter a valid number (e.g., 70 or 1.75)."),
         }
-        .container {
-            max-width: 600px;
-            margin: auto;
-            background: white;
-            padding: 25px;
-            border-radius: 8px;
-        }
-        h1 {
-            color: #2c3e50;
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <h1>Basic Health Risk Checker</h1>
-
-    <p>
-        This project is a simple health informatics tool written in Rust.
-        It calculates Body Mass Index (BMI) based on user input.
-    </p>
-
-    <h3>How it works</h3>
-    <ul>
-        <li>User enters weight in kilograms</li>
-        <li>User enters height in meters</li>
-        <li>The program calculates BMI</li>
-        <li>A health risk category is displayed</li>
-    </ul>
-
-    <h3>Technology Used</h3>
-    <ul>
-        <li>Rust programming language</li>
-        <li>Command-line application</li>
-        <li>Health Informatics domain</li>
-    </ul>
-
-    <p><strong>Run command:</strong> <code>cargo run</code></p>
-
-    <hr>
-    <p><em>Student project – Health Informatics</em></p>
-</div>
-
-</body>
-</html>
+    }
+}
